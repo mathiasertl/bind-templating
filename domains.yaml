@@ -1,0 +1,23 @@
+default:
+    context:
+        soa:
+            refresh: 3600
+            retry: 600
+            expire: 86400
+            negative_ttl: 600
+        dnssec: true
+    views:
+        - internal
+        - external
+jabber.at:
+    context:
+        # Just overwrite a single soa value
+        soa:
+            retry: 900
+fsinf.at: {}
+jabber.zone: {}
+local:
+    context:
+        dnssec: false
+    views:
+        - internal
