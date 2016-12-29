@@ -1,4 +1,5 @@
 default:
+    # Default context used in templates
     context:
         soa:
             refresh: 3600
@@ -17,15 +18,21 @@ default:
             titan6: 2001:629:3200:95::1:44
             titanhttp4: 128.130.95.45
             titanhttp6: 2001:629:3200:95::1:45
+
+    # Other default settings
     views:
         - internal
         - external
 jabber.at:
+    # Overlay part of the context
     context:
-        # Just overwrite a single soa value
         has_titanhttp: true
+
+        # Just overwrite a single soa value, dicts are merged
         soa:
             retry: 900
+
+    # Overlay context for just the external view
     external_context:
         ipv6: false
         has_titanhttp: false
