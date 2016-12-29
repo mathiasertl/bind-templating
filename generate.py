@@ -22,6 +22,10 @@ zone = args.domain
 # load template engine
 env = Environment(loader=FileSystemLoader(os.path.abspath('templates')))
 
+# set default config as default values to zone config
+for key, value in domain_config['default'].items():
+    domain_config[zone].setdefault(key, value)
+
 # Generate serial outside of loop so that all views have the same serial
 serial = int(time.time())
 
@@ -41,6 +45,13 @@ for view in domain_config[zone]['views']:
     # Compute context for templates
     context = domain_config['default']['context'].copy()
     for key, value in domain_config[zone].get('context', {}).items():
+        if isinstance(value, dict) and isinstance(context[key], dict):
+            context[key].update(value)
+        else:
+            context[key] = value
+
+    # Add view-specific config
+    for key, value in domain_config[zone].get('%s_context' % view, {}).items():
         if isinstance(value, dict) and isinstance(context[key], dict):
             context[key].update(value)
         else:
