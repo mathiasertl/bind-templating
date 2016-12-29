@@ -1,0 +1,17 @@
+{% extends "default.zone" %}
+
+{% block main %}
+@                               A       {{ hyperion4 }}
+www                             CNAME   @
+
+; primary XMPP server
+xmpp                            A       {{ titan4 }}
+http                            A       {{ titanhttp4 }}
+
+{% if ipv6 %}
+@                               AAAA    {{ hyperion6 }}
+xmpp                            AAAA    {{ titan6 }}
+http                            AAAA    {{ titanhttp6 }}
+{% endif %}
+
+{% endblock main %}

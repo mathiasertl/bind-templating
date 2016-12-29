@@ -1,2 +1,3 @@
-{% include "include/header" %}
-{% include "include/nameserver" %}
+{% block header %}{% include "include/header" %}{% endblock %}
+{% block nameserver %}{% include "include/nameservers" %}{% endblock %}
+{% block main %}{% endblock %}
