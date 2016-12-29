@@ -5,6 +5,8 @@ default:
             retry: 600
             expire: 86400
             negative_ttl: 600
+        ipv4: true
+        ipv6: true
         dnssec: true
     views:
         - internal
@@ -14,6 +16,7 @@ jabber.at:
         # Just overwrite a single soa value
         soa:
             retry: 900
+        ipv6: false
 fsinf.at: {}
 jabber.zone: {}
 local:
