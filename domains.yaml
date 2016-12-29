@@ -8,15 +8,34 @@ default:
         ipv4: true
         ipv6: true
         dnssec: true
+        hosts:
+            enceladus4: 128.130.95.17
+            enceladus6: 2001:629:3200:95::1:17
+            hyperion4: 128.130.95.47
+            hyperion6: 2001:629:3200:95::1:47
+            titan4: 128.130.95.44
+            titan6: 2001:629:3200:95::1:44
+            titanhttp4: 128.130.95.45
+            titanhttp6: 2001:629:3200:95::1:45
     views:
         - internal
         - external
 jabber.at:
     context:
         # Just overwrite a single soa value
+        has_titanhttp: true
         soa:
             retry: 900
+    external_context:
         ipv6: false
+        has_titanhttp: false
+        hosts:
+            hyperion4: 138.201.246.149
+            hyperion6: null
+            titan4: 88.99.81.6
+            titan6: null
+            titanhttp4: null
+            titanhttp6: null
 fsinf.at: {}
 jabber.zone: {}
 local:

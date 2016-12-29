@@ -1,17 +1,23 @@
 {% extends "default.zone" %}
 
 {% block main %}
-@                               A       {{ hyperion4 }}
+@                               A       {{ hosts.hyperion4 }}
 www                             CNAME   @
 
 ; primary XMPP server
-xmpp                            A       {{ titan4 }}
-http                            A       {{ titanhttp4 }}
+xmpp                            A       {{ hosts.titan4 }}
+{% if has_titanhttp %}
+http                            A       {{ hosts.titanhttp4 }}
+{% endif %}
+apt                             A       {{ hosts.enceladus4 }}
 
 {% if ipv6 %}
-@                               AAAA    {{ hyperion6 }}
-xmpp                            AAAA    {{ titan6 }}
-http                            AAAA    {{ titanhttp6 }}
+@                               AAAA    {{ hosts.hyperion6 }}
+xmpp                            AAAA    {{ hosts.titan6 }}
+{% if has_titanhttp %}
+http                            AAAA    {{ hosts.titanhttp6 }}
+{% endif %}
+apt                             A       {{ hosts.enceladus6 }}
 {% endif %}
 
 {% endblock main %}
